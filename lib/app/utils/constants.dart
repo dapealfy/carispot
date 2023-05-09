@@ -6,5 +6,5 @@ class AppConstants {
 
   //Coloring
   static const Color black = Color(0xff151515);
-  static const Color lime = Color(0xff8D1FF71);
+  static const Color lime = Color.fromARGB(248, 210, 255, 113);
 }

@@ -8,7 +8,7 @@ import 'app/routes/app_pages.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Hive.init((await getApplicationDocumentsDirectory()).path + '/databases');
+  Hive.init('${(await getApplicationDocumentsDirectory()).path}/databases');
   runApp(
     GetMaterialApp(
       title: "CariSpot",

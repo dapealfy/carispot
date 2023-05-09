@@ -1,9 +1,7 @@
 import 'package:carispot/app/utils/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
 
 import 'package:get/get.dart';
-import 'package:latlong2/latlong.dart';
 
 import '../controllers/home_controller.dart';
 
@@ -15,16 +13,17 @@ class HomeView extends GetView<HomeController> {
       backgroundColor: AppConstants.black,
       body: SafeArea(
         child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
             child: Column(
               children: [
                 _appBar(),
-                SizedBox(height: 48),
+                const SizedBox(height: 48),
                 _upperText(),
-                SizedBox(height: 24),
+                const SizedBox(height: 24),
                 _tabbar(),
-                SizedBox(height: 48),
+                const SizedBox(height: 48),
                 _carousel(),
               ],
             ),
@@ -39,7 +38,7 @@ Widget _appBar() {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
-      Text(
+      const Text(
         'Jakarta',
         style: TextStyle(
           color: Colors.white,
@@ -48,13 +47,13 @@ Widget _appBar() {
         ),
       ),
       Container(
-        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           color: AppConstants.lime,
         ),
         child: Row(
-          children: [
+          children: const [
             Icon(Icons.sunny, color: Colors.black),
             SizedBox(
               width: 8,
@@ -74,7 +73,7 @@ Widget _upperText() {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.stretch,
     children: [
-      Text(
+      const Text(
         'Cari Rumah Sakit dan Restoran.',
         style: TextStyle(
           color: Colors.white,
@@ -82,7 +81,7 @@ Widget _upperText() {
           fontWeight: FontWeight.w600,
         ),
       ),
-      SizedBox(
+      const SizedBox(
         height: 12,
       ),
       Text(
@@ -98,12 +97,12 @@ Widget _tabbar() {
     children: [
       Expanded(
         child: Container(
-          margin: EdgeInsets.only(right: 8),
-          padding: EdgeInsets.symmetric(vertical: 12),
+          margin: const EdgeInsets.only(right: 8),
+          padding: const EdgeInsets.symmetric(vertical: 12),
           decoration: BoxDecoration(
               color: Colors.grey.withOpacity(0.1),
               borderRadius: BorderRadius.circular(30)),
-          child: Center(
+          child: const Center(
             child: Text(
               'Populer',
               style: TextStyle(color: Colors.white, fontSize: 18),
@@ -113,12 +112,12 @@ Widget _tabbar() {
       ),
       Expanded(
         child: Container(
-          margin: EdgeInsets.only(left: 8),
-          padding: EdgeInsets.symmetric(vertical: 12),
+          margin: const EdgeInsets.only(left: 8),
+          padding: const EdgeInsets.symmetric(vertical: 12),
           decoration: BoxDecoration(
               color: AppConstants.lime,
               borderRadius: BorderRadius.circular(30)),
-          child: Center(
+          child: const Center(
             child: Text(
               'Terdekat',
               style: TextStyle(color: Colors.black, fontSize: 18),
@@ -135,14 +134,14 @@ Widget _carousel() {
     height: 320,
     child: ListView.builder(
       shrinkWrap: true,
-      physics: BouncingScrollPhysics(),
+      physics: const BouncingScrollPhysics(),
       itemCount: 4,
       scrollDirection: Axis.horizontal,
       itemBuilder: (context, index) {
         return Stack(
           children: [
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 12),
+              margin: const EdgeInsets.symmetric(horizontal: 12),
               height: 330,
               width: 330,
               child: ClipRRect(
@@ -158,11 +157,11 @@ Widget _carousel() {
               left: 12,
               right: 12,
               child: Container(
-                margin: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Text(
+                    const Text(
                       'Restoran Enak',
                       style: TextStyle(
                         fontSize: 22,
@@ -170,11 +169,11 @@ Widget _carousel() {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 8,
                     ),
                     Row(
-                      children: [
+                      children: const [
                         Icon(
                           Icons.location_on_outlined,
                           color: Color(0xff999999),

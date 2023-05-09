@@ -1,4 +1,4 @@
-import 'package:carispot/app/modules/home/controllers/home_controller.dart';
+import 'package:carispot/app/modules/favorite/controllers/favorite_controller.dart';
 import 'package:carispot/app/modules/main/controllers/main_controller.dart';
 import 'package:carispot/app/utils/constants.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +39,7 @@ class MapsView extends GetView<MapsController> {
                               TileLayer(
                                 urlTemplate:
                                     "https://api.mapbox.com/styles/v1/davearr/clcrnx2li000214r0quwyn5jt/tiles/256/{z}/{x}/{y}@2x?access_token={accessToken}",
-                                additionalOptions: {
+                                additionalOptions: const {
                                   'accessToken': AppConstants.mapBoxAccessToken,
                                 },
                               ),
@@ -57,7 +57,7 @@ class MapsView extends GetView<MapsController> {
                                         InkWell(
                                           onTap: () {
                                             Get.bottomSheet(Container(
-                                              decoration: BoxDecoration(
+                                              decoration: const BoxDecoration(
                                                 color: Colors.black,
                                                 borderRadius:
                                                     BorderRadius.vertical(
@@ -65,12 +65,15 @@ class MapsView extends GetView<MapsController> {
                                                 ),
                                               ),
                                               child: Container(
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: 24),
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 24),
                                                 decoration: BoxDecoration(
-                                                    color: Color(0xff232323),
+                                                    color:
+                                                        const Color(0xff232323),
                                                     borderRadius:
-                                                        BorderRadius.vertical(
+                                                        const BorderRadius
+                                                            .vertical(
                                                       top: Radius.circular(30),
                                                     ),
                                                     boxShadow: [
@@ -88,7 +91,7 @@ class MapsView extends GetView<MapsController> {
                                                       CrossAxisAlignment
                                                           .stretch,
                                                   children: [
-                                                    SizedBox(
+                                                    const SizedBox(
                                                       height: 24,
                                                     ),
                                                     Text(
@@ -102,23 +105,24 @@ class MapsView extends GetView<MapsController> {
                                                               ? '${str[0].toUpperCase()}${str.substring(1).toLowerCase()}'
                                                               : '')
                                                           .join(' '),
-                                                      style: TextStyle(
+                                                      style: const TextStyle(
                                                         color: Colors.white,
                                                         fontSize: 24,
                                                         fontWeight:
                                                             FontWeight.w600,
                                                       ),
                                                     ),
-                                                    SizedBox(height: 8),
+                                                    const SizedBox(height: 8),
                                                     Row(
                                                       children: [
-                                                        Icon(
+                                                        const Icon(
                                                           Icons
                                                               .location_on_outlined,
                                                           color:
                                                               AppConstants.lime,
                                                         ),
-                                                        SizedBox(width: 4),
+                                                        const SizedBox(
+                                                            width: 4),
                                                         Text(
                                                           '1 km',
                                                           style: TextStyle(
@@ -129,7 +133,7 @@ class MapsView extends GetView<MapsController> {
                                                         ),
                                                       ],
                                                     ),
-                                                    SizedBox(height: 8),
+                                                    const SizedBox(height: 8),
                                                     Text(
                                                       data['alamat'],
                                                       style: TextStyle(
@@ -137,13 +141,14 @@ class MapsView extends GetView<MapsController> {
                                                               .withOpacity(
                                                                   0.7)),
                                                     ),
-                                                    SizedBox(height: 24),
+                                                    const SizedBox(height: 24),
                                                     Row(
                                                       children: [
                                                         Expanded(
                                                           child: Container(
-                                                            padding: EdgeInsets
-                                                                .symmetric(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .symmetric(
                                                                     vertical:
                                                                         12),
                                                             decoration: BoxDecoration(
@@ -154,7 +159,7 @@ class MapsView extends GetView<MapsController> {
                                                                     BorderRadius
                                                                         .circular(
                                                                             30)),
-                                                            child: Center(
+                                                            child: const Center(
                                                               child: Text(
                                                                 'Petunjuk Arah',
                                                                 style: TextStyle(
@@ -166,24 +171,25 @@ class MapsView extends GetView<MapsController> {
                                                             ),
                                                           ),
                                                         ),
-                                                        SizedBox(
+                                                        const SizedBox(
                                                           width: 12,
                                                         ),
                                                         GetBuilder<
-                                                                MapsController>(
+                                                                FavoriteController>(
                                                             init:
-                                                                MapsController(),
+                                                                FavoriteController(),
                                                             builder:
-                                                                (mapsController) {
+                                                                (favoriteController) {
                                                               return InkWell(
                                                                 onTap: () {
-                                                                  mapsController
+                                                                  favoriteController
                                                                       .addPlaceToFavorite(
                                                                           data);
                                                                 },
                                                                 child:
                                                                     Container(
-                                                                  padding: EdgeInsets.symmetric(
+                                                                  padding: const EdgeInsets
+                                                                          .symmetric(
                                                                       vertical:
                                                                           12,
                                                                       horizontal:
@@ -197,7 +203,7 @@ class MapsView extends GetView<MapsController> {
                                                                   child: Center(
                                                                       child:
                                                                           Icon(
-                                                                    mapsController.isFavorited(
+                                                                    favoriteController.isFavorited(
                                                                             data)
                                                                         ? Icons
                                                                             .favorite
@@ -211,13 +217,13 @@ class MapsView extends GetView<MapsController> {
                                                             }),
                                                       ],
                                                     ),
-                                                    SizedBox(height: 24),
+                                                    const SizedBox(height: 24),
                                                   ],
                                                 ),
                                               ),
                                             ));
                                           },
-                                          child: Icon(
+                                          child: const Icon(
                                             Icons.location_pin,
                                             color: Colors.red,
                                           ),
@@ -239,10 +245,10 @@ class MapsView extends GetView<MapsController> {
                 builder: (c) {
                   return SafeArea(
                     child: Container(
-                      padding: EdgeInsets.only(
+                      padding: const EdgeInsets.only(
                           left: 24, top: 4, bottom: 4, right: 12),
                       decoration: BoxDecoration(
-                          color: Color(0xff222222),
+                          color: const Color(0xff222222),
                           boxShadow: [
                             BoxShadow(
                               color: Colors.black.withOpacity(0.4),
@@ -256,11 +262,11 @@ class MapsView extends GetView<MapsController> {
                             border: InputBorder.none,
                             hintText: 'Cari lokasi..',
                             suffixIcon: IconButton(
-                              icon: Icon(Icons.search),
+                              icon: const Icon(Icons.search),
                               onPressed: () {},
                               color: Colors.white,
                             ),
-                            hintStyle: TextStyle(color: Colors.white)),
+                            hintStyle: const TextStyle(color: Colors.white)),
                       ),
                     ),
                   );

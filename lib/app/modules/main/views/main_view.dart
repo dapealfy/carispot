@@ -1,5 +1,4 @@
 import 'package:carispot/app/modules/favorite/views/favorite_view.dart';
-import 'package:carispot/app/modules/home/controllers/home_controller.dart';
 import 'package:carispot/app/modules/home/views/home_view.dart';
 import 'package:carispot/app/modules/maps/views/maps_view.dart';
 import 'package:carispot/app/utils/constants.dart';
@@ -28,7 +27,7 @@ class MainView extends GetView<MainController> {
               children: [
                 IndexedStack(
                   index: c.currentPage,
-                  children: [HomeView(), MapsView(), FavoriteView()],
+                  children: const [HomeView(), MapsView(), FavoriteView()],
                 ),
                 Positioned(
                   bottom: 24,
@@ -37,7 +36,7 @@ class MainView extends GetView<MainController> {
                   child: Center(
                     child: Container(
                       decoration: BoxDecoration(
-                          color: Color(0xff222222),
+                          color: const Color(0xff222222),
                           boxShadow: [
                             BoxShadow(
                               color: Colors.black.withOpacity(0.4),
@@ -49,13 +48,13 @@ class MainView extends GetView<MainController> {
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             width: 8,
                           ),
                           Material(
                             color: Colors.transparent,
                             child: InkWell(
-                              customBorder: CircleBorder(),
+                              customBorder: const CircleBorder(),
                               splashColor: AppConstants.black,
                               onTap: () {
                                 c.changePage(0);
@@ -74,8 +73,9 @@ class MainView extends GetView<MainController> {
                                         ? Container(
                                             height: 5,
                                             width: 5,
-                                            padding: EdgeInsets.only(top: 4),
-                                            decoration: BoxDecoration(
+                                            padding:
+                                                const EdgeInsets.only(top: 4),
+                                            decoration: const BoxDecoration(
                                                 shape: BoxShape.circle,
                                                 color: Colors.white),
                                           )
@@ -85,13 +85,13 @@ class MainView extends GetView<MainController> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 8,
                           ),
                           Material(
                             color: Colors.transparent,
                             child: InkWell(
-                              customBorder: CircleBorder(),
+                              customBorder: const CircleBorder(),
                               splashColor: AppConstants.black,
                               onTap: () {
                                 c.changePage(1);
@@ -110,8 +110,9 @@ class MainView extends GetView<MainController> {
                                         ? Container(
                                             height: 5,
                                             width: 5,
-                                            padding: EdgeInsets.only(top: 4),
-                                            decoration: BoxDecoration(
+                                            padding:
+                                                const EdgeInsets.only(top: 4),
+                                            decoration: const BoxDecoration(
                                                 shape: BoxShape.circle,
                                                 color: Colors.white),
                                           )
@@ -121,13 +122,13 @@ class MainView extends GetView<MainController> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 8,
                           ),
                           Material(
                             color: Colors.transparent,
                             child: InkWell(
-                              customBorder: CircleBorder(),
+                              customBorder: const CircleBorder(),
                               splashColor: AppConstants.black,
                               onTap: () {
                                 c.changePage(2);
@@ -146,8 +147,9 @@ class MainView extends GetView<MainController> {
                                         ? Container(
                                             height: 5,
                                             width: 5,
-                                            padding: EdgeInsets.only(top: 4),
-                                            decoration: BoxDecoration(
+                                            padding:
+                                                const EdgeInsets.only(top: 4),
+                                            decoration: const BoxDecoration(
                                                 shape: BoxShape.circle,
                                                 color: Colors.white),
                                           )
@@ -157,7 +159,7 @@ class MainView extends GetView<MainController> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 8,
                           ),
                         ],

@@ -1,23 +1,23 @@
+import 'package:carispot/app/modules/main/controllers/main_controller.dart';
 import 'package:get/get.dart';
 
 class FavoriteController extends GetxController {
-  //TODO: Implement FavoriteController
-
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+  addPlaceToFavorite(data) {
+    MainController mainController = Get.find<MainController>();
+    if (mainController.box!.get(data['lokasi']) == null) {
+      mainController.box!.put(data['lokasi'], data);
+    } else {
+      mainController.box!.delete(data['lokasi']);
+    }
+    update();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
+  bool isFavorited(data) {
+    MainController mainController = Get.find<MainController>();
+    if (mainController.box!.get(data['lokasi']) != null) {
+      return true;
+    } else {
+      return false;
+    }
   }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }
