@@ -1,3 +1,4 @@
+import 'package:carispot/app/modules/home/controllers/home_controller.dart';
 import 'package:carispot/app/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -5,17 +6,17 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 
-import '../controllers/home_controller.dart';
+import '../controllers/maps_controller.dart';
 
-class HomeView extends GetView<HomeController> {
-  const HomeView({Key? key}) : super(key: key);
+class MapsView extends GetView<MapsController> {
+  const MapsView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: GetBuilder<HomeController>(
           init: HomeController(),
           initState: (state) {
-            controller.determinePosition();
+            state.controller!.determinePosition();
           },
           builder: (c) {
             return c.userPosition == null
