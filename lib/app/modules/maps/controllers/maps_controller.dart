@@ -1,23 +1,12 @@
+import 'dart:convert';
+
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class MapsController extends GetxController {
-  //TODO: Implement MapsController
-
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+  Future<void> getData() async {
+    final String response =
+        await rootBundle.loadString('assets/database/database.json');
+    final data = await json.decode(response);
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }

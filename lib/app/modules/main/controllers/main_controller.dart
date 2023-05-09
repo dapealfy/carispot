@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class MainController extends GetxController {
-  RxInt currentPage = 0.obs;
+  int currentPage = 0;
   PageController pageController = PageController();
+
+  void changePage(int index) {
+    currentPage = index;
+    update();
+  }
 }
