@@ -13,7 +13,7 @@ class MainController extends GetxController {
   Position? userPosition;
   Map<String, dynamic>? dataPlace;
 
-  var box;
+  Box? box;
 
   void openBoxFavorite() async {
     box = await Hive.openBox('favoritePlace');

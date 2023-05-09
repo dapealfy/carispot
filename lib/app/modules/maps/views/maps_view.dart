@@ -23,176 +23,212 @@ class MapsView extends GetView<MapsController> {
                 mainController.determinePosition();
               },
               builder: (c) {
-                return c.userPosition == null && c.dataPlace == null
+                return c.userPosition == null
                     ? const SizedBox()
-                    : FlutterMap(
-                        options: MapOptions(
-                          center: LatLng(c.userPosition!.latitude,
-                              c.userPosition!.longitude),
-                          zoom: 15,
-                          interactiveFlags:
-                              InteractiveFlag.pinchZoom | InteractiveFlag.drag,
-                        ),
-                        children: [
-                          TileLayer(
-                            urlTemplate:
-                                "https://api.mapbox.com/styles/v1/davearr/clcrnx2li000214r0quwyn5jt/tiles/256/{z}/{x}/{y}@2x?access_token={accessToken}",
-                            additionalOptions: {
-                              'accessToken': AppConstants.mapBoxAccessToken,
-                            },
-                          ),
-                          MarkerLayer(
-                            markers:
-                                (c.dataPlace!['place'] as List).map((data) {
-                              return Marker(
-                                point: LatLng(double.parse(data['latitude']),
-                                    double.parse(data['longitude'])),
-                                width: 74,
-                                height: 74,
-                                builder: (context) => Column(
-                                  children: [
-                                    InkWell(
-                                      onTap: () {
-                                        Get.bottomSheet(Container(
-                                          decoration: BoxDecoration(
-                                            color: Colors.black,
-                                            borderRadius: BorderRadius.vertical(
-                                              top: Radius.circular(30),
-                                            ),
-                                          ),
-                                          child: Container(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 24),
-                                            decoration: BoxDecoration(
-                                                color: Color(0xff232323),
+                    : c.dataPlace == null
+                        ? const SizedBox()
+                        : FlutterMap(
+                            options: MapOptions(
+                              center: LatLng(c.userPosition!.latitude,
+                                  c.userPosition!.longitude),
+                              zoom: 15,
+                              interactiveFlags: InteractiveFlag.pinchZoom |
+                                  InteractiveFlag.drag,
+                            ),
+                            children: [
+                              TileLayer(
+                                urlTemplate:
+                                    "https://api.mapbox.com/styles/v1/davearr/clcrnx2li000214r0quwyn5jt/tiles/256/{z}/{x}/{y}@2x?access_token={accessToken}",
+                                additionalOptions: {
+                                  'accessToken': AppConstants.mapBoxAccessToken,
+                                },
+                              ),
+                              MarkerLayer(
+                                markers:
+                                    (c.dataPlace!['place'] as List).map((data) {
+                                  return Marker(
+                                    point: LatLng(
+                                        double.parse(data['latitude']),
+                                        double.parse(data['longitude'])),
+                                    width: 74,
+                                    height: 74,
+                                    builder: (context) => Column(
+                                      children: [
+                                        InkWell(
+                                          onTap: () {
+                                            Get.bottomSheet(Container(
+                                              decoration: BoxDecoration(
+                                                color: Colors.black,
                                                 borderRadius:
                                                     BorderRadius.vertical(
                                                   top: Radius.circular(30),
                                                 ),
-                                                boxShadow: [
-                                                  BoxShadow(
-                                                    color: Colors.black
-                                                        .withOpacity(0.2),
-                                                    blurRadius: 15,
-                                                    spreadRadius: 5,
-                                                  )
-                                                ]),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.min,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.stretch,
-                                              children: [
-                                                SizedBox(
-                                                  height: 24,
-                                                ),
-                                                Text(
-                                                  data['lokasi']
-                                                      .replaceAll(
-                                                          RegExp(' +'), ' ')
-                                                      .split(' ')
-                                                      .map((str) => str.length >
-                                                              0
-                                                          ? '${str[0].toUpperCase()}${str.substring(1).toLowerCase()}'
-                                                          : '')
-                                                      .join(' '),
-                                                  style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 24,
-                                                    fontWeight: FontWeight.w600,
-                                                  ),
-                                                ),
-                                                SizedBox(height: 8),
-                                                Row(
-                                                  children: [
-                                                    Icon(
-                                                      Icons
-                                                          .location_on_outlined,
-                                                      color: AppConstants.lime,
+                                              ),
+                                              child: Container(
+                                                padding: EdgeInsets.symmetric(
+                                                    horizontal: 24),
+                                                decoration: BoxDecoration(
+                                                    color: Color(0xff232323),
+                                                    borderRadius:
+                                                        BorderRadius.vertical(
+                                                      top: Radius.circular(30),
                                                     ),
-                                                    SizedBox(width: 4),
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                        color: Colors.black
+                                                            .withOpacity(0.2),
+                                                        blurRadius: 15,
+                                                        spreadRadius: 5,
+                                                      )
+                                                    ]),
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment
+                                                          .stretch,
+                                                  children: [
+                                                    SizedBox(
+                                                      height: 24,
+                                                    ),
                                                     Text(
-                                                      '1 km',
+                                                      data['lokasi']
+                                                          .replaceAll(
+                                                              RegExp(' +'), ' ')
+                                                          .split(' ')
+                                                          .map((str) => str
+                                                                      .length >
+                                                                  0
+                                                              ? '${str[0].toUpperCase()}${str.substring(1).toLowerCase()}'
+                                                              : '')
+                                                          .join(' '),
+                                                      style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontSize: 24,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                      ),
+                                                    ),
+                                                    SizedBox(height: 8),
+                                                    Row(
+                                                      children: [
+                                                        Icon(
+                                                          Icons
+                                                              .location_on_outlined,
+                                                          color:
+                                                              AppConstants.lime,
+                                                        ),
+                                                        SizedBox(width: 4),
+                                                        Text(
+                                                          '1 km',
+                                                          style: TextStyle(
+                                                              color: Colors
+                                                                  .white
+                                                                  .withOpacity(
+                                                                      0.7)),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    SizedBox(height: 8),
+                                                    Text(
+                                                      data['alamat'],
                                                       style: TextStyle(
                                                           color: Colors.white
                                                               .withOpacity(
                                                                   0.7)),
                                                     ),
-                                                  ],
-                                                ),
-                                                SizedBox(height: 8),
-                                                Text(
-                                                  data['alamat'],
-                                                  style: TextStyle(
-                                                      color: Colors.white
-                                                          .withOpacity(0.7)),
-                                                ),
-                                                SizedBox(height: 24),
-                                                Row(
-                                                  children: [
-                                                    Expanded(
-                                                      child: Container(
-                                                        padding: EdgeInsets
-                                                            .symmetric(
-                                                                vertical: 12),
-                                                        decoration: BoxDecoration(
-                                                            color: AppConstants
-                                                                .lime,
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        30)),
-                                                        child: Center(
-                                                          child: Text(
-                                                            'Petunjuk Arah',
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .black,
-                                                                fontSize: 18),
+                                                    SizedBox(height: 24),
+                                                    Row(
+                                                      children: [
+                                                        Expanded(
+                                                          child: Container(
+                                                            padding: EdgeInsets
+                                                                .symmetric(
+                                                                    vertical:
+                                                                        12),
+                                                            decoration: BoxDecoration(
+                                                                color:
+                                                                    AppConstants
+                                                                        .lime,
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            30)),
+                                                            child: Center(
+                                                              child: Text(
+                                                                'Petunjuk Arah',
+                                                                style: TextStyle(
+                                                                    color: Colors
+                                                                        .black,
+                                                                    fontSize:
+                                                                        18),
+                                                              ),
+                                                            ),
                                                           ),
                                                         ),
-                                                      ),
+                                                        SizedBox(
+                                                          width: 12,
+                                                        ),
+                                                        GetBuilder<
+                                                                MapsController>(
+                                                            init:
+                                                                MapsController(),
+                                                            builder:
+                                                                (mapsController) {
+                                                              return InkWell(
+                                                                onTap: () {
+                                                                  mapsController
+                                                                      .addPlaceToFavorite(
+                                                                          data);
+                                                                },
+                                                                child:
+                                                                    Container(
+                                                                  padding: EdgeInsets.symmetric(
+                                                                      vertical:
+                                                                          12,
+                                                                      horizontal:
+                                                                          12),
+                                                                  decoration: BoxDecoration(
+                                                                      color: AppConstants
+                                                                          .black,
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              30)),
+                                                                  child: Center(
+                                                                      child:
+                                                                          Icon(
+                                                                    mapsController.isFavorited(
+                                                                            data)
+                                                                        ? Icons
+                                                                            .favorite
+                                                                        : Icons
+                                                                            .favorite_border,
+                                                                    color: Colors
+                                                                        .white,
+                                                                  )),
+                                                                ),
+                                                              );
+                                                            }),
+                                                      ],
                                                     ),
-                                                    SizedBox(
-                                                      width: 12,
-                                                    ),
-                                                    Container(
-                                                      padding:
-                                                          EdgeInsets.symmetric(
-                                                              vertical: 12,
-                                                              horizontal: 12),
-                                                      decoration: BoxDecoration(
-                                                          color: AppConstants
-                                                              .black,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      30)),
-                                                      child: Center(
-                                                          child: Icon(
-                                                        Icons.favorite_border,
-                                                        color: Colors.white,
-                                                      )),
-                                                    ),
+                                                    SizedBox(height: 24),
                                                   ],
                                                 ),
-                                                SizedBox(height: 24),
-                                              ],
-                                            ),
+                                              ),
+                                            ));
+                                          },
+                                          child: Icon(
+                                            Icons.location_pin,
+                                            color: Colors.red,
                                           ),
-                                        ));
-                                      },
-                                      child: Icon(
-                                        Icons.location_pin,
-                                        color: Colors.red,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              );
-                            }).toList(),
-                          ),
-                        ],
-                      );
+                                        )
+                                      ],
+                                    ),
+                                  );
+                                }).toList(),
+                              ),
+                            ],
+                          );
               }),
           Positioned(
             top: 20,
