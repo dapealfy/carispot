@@ -2,6 +2,7 @@ import 'package:carispot/app/modules/favorite/controllers/favorite_controller.da
 import 'package:carispot/app/modules/main/controllers/main_controller.dart';
 import 'package:carispot/app/utils/constants.dart';
 import 'package:carispot/app/utils/location.dart';
+import 'package:carispot/app/utils/maps.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 
@@ -265,15 +266,21 @@ Widget _bottomSheet(data) {
                 Row(
                   children: [
                     Expanded(
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(vertical: 12),
-                        decoration: BoxDecoration(
-                            color: AppConstants.lime,
-                            borderRadius: BorderRadius.circular(30)),
-                        child: const Center(
-                          child: Text(
-                            'Petunjuk Arah',
-                            style: TextStyle(color: Colors.black, fontSize: 18),
+                      child: GestureDetector(
+                        onTap: () {
+                          MapUtils.openMap(data['latitude'], data['longitude']);
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(vertical: 12),
+                          decoration: BoxDecoration(
+                              color: AppConstants.lime,
+                              borderRadius: BorderRadius.circular(30)),
+                          child: const Center(
+                            child: Text(
+                              'Petunjuk Arah',
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 18),
+                            ),
                           ),
                         ),
                       ),

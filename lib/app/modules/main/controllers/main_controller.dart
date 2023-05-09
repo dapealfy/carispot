@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:carispot/app/modules/home/controllers/home_controller.dart';
+import 'package:carispot/app/utils/location.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
@@ -13,6 +14,7 @@ class MainController extends GetxController {
 
   Position? userPosition;
   Map<String, dynamic>? dataPlace;
+  List allPlace = [];
 
   Box? box;
 
@@ -23,6 +25,7 @@ class MainController extends GetxController {
 
   void changePage(int index) {
     currentPage = index;
+    pageController.jumpToPage(index);
     update();
   }
 
@@ -50,6 +53,8 @@ class MainController extends GetxController {
     userPosition = await Geolocator.getCurrentPosition();
     HomeController homeController = Get.put(HomeController());
     homeController.getUserAddress(userPosition);
+    allPlace =
+        sortLocationsByDistance(userPosition!, dataPlace!['place']) as List;
     update();
   }
 
@@ -57,6 +62,12 @@ class MainController extends GetxController {
     final String response =
         await rootBundle.loadString('assets/database/database.json');
     dataPlace = await json.decode(response);
+
+    update();
+  }
+
+  updateBox() {
+    box = box;
     update();
   }
 }

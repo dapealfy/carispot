@@ -1,5 +1,7 @@
 import 'package:carispot/app/modules/main/controllers/main_controller.dart';
+import 'package:carispot/app/utils/location.dart';
 import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {

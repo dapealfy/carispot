@@ -27,8 +27,9 @@ class MainView extends GetView<MainController> {
           builder: (c) {
             return Stack(
               children: [
-                IndexedStack(
-                  index: c.currentPage,
+                PageView(
+                  physics: NeverScrollableScrollPhysics(),
+                  controller: c.pageController,
                   children: const [HomeView(), MapsView(), FavoriteView()],
                 ),
                 Positioned(

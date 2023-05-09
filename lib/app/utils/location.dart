@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:geolocator/geolocator.dart';
+
 const double earthRadius = 6372.8;
 
 double distanceBetweenLatLng(
@@ -18,4 +20,22 @@ double distanceBetweenLatLng(
 
 double _toRadians(double degree) {
   return degree * pi / 180;
+}
+
+List sortLocationsByDistance(Position currentPosition, List locations) {
+  locations.sort((location1, location2) {
+    final distance1 = distanceBetweenLatLng(
+        currentPosition.latitude,
+        currentPosition.longitude,
+        double.parse(location1['latitude']),
+        double.parse(location1['longitude']));
+    final distance2 = distanceBetweenLatLng(
+        currentPosition.latitude,
+        currentPosition.longitude,
+        double.parse(location2['latitude']),
+        double.parse(location2['longitude']));
+    return distance1.compareTo(distance2);
+  });
+
+  return locations;
 }
