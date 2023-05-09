@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:carispot/app/modules/home/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
@@ -47,6 +48,8 @@ class MainController extends GetxController {
     }
 
     userPosition = await Geolocator.getCurrentPosition();
+    HomeController homeController = Get.put(HomeController());
+    homeController.getUserAddress(userPosition);
     update();
   }
 

@@ -1,4 +1,5 @@
 import 'package:carispot/app/modules/favorite/views/favorite_view.dart';
+import 'package:carispot/app/modules/home/controllers/home_controller.dart';
 import 'package:carispot/app/modules/home/views/home_view.dart';
 import 'package:carispot/app/modules/maps/views/maps_view.dart';
 import 'package:carispot/app/utils/constants.dart';
@@ -13,6 +14,7 @@ class MainView extends GetView<MainController> {
   @override
   Widget build(BuildContext context) {
     MainController mainController = Get.put(MainController());
+
     return Scaffold(
       backgroundColor: AppConstants.black,
       body: GetBuilder<MainController>(

@@ -35,38 +35,42 @@ class HomeView extends GetView<HomeController> {
 }
 
 Widget _appBar() {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: [
-      const Text(
-        'Jakarta',
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 16,
-          fontWeight: FontWeight.w600,
-        ),
-      ),
-      Container(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          color: AppConstants.lime,
-        ),
-        child: Row(
-          children: const [
-            Icon(Icons.sunny, color: Colors.black),
-            SizedBox(
-              width: 8,
-            ),
+  return GetBuilder<HomeController>(
+      init: HomeController(),
+      builder: (c) {
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
             Text(
-              '29°',
-              style: TextStyle(color: Colors.black),
+              c.placemarks == null ? '...' : c.placemarks![0].name!,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: AppConstants.lime,
+              ),
+              child: Row(
+                children: const [
+                  Icon(Icons.sunny, color: Colors.black),
+                  SizedBox(
+                    width: 8,
+                  ),
+                  Text(
+                    '29°',
+                    style: TextStyle(color: Colors.black),
+                  ),
+                ],
+              ),
             ),
           ],
-        ),
-      ),
-    ],
-  );
+        );
+      });
 }
 
 Widget _upperText() {
