@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../modules/favorite/bindings/favorite_binding.dart';
+import '../modules/favorite/views/favorite_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/main/bindings/main_binding.dart';
@@ -29,6 +31,11 @@ class AppPages {
       name: _Paths.MAIN,
       page: () => const MainView(),
       binding: MainBinding(),
+    ),
+    GetPage(
+      name: _Paths.FAVORITE,
+      page: () => const FavoriteView(),
+      binding: FavoriteBinding(),
     ),
   ];
 }

@@ -1,3 +1,4 @@
+import 'package:carispot/app/modules/favorite/views/favorite_view.dart';
 import 'package:carispot/app/modules/home/controllers/home_controller.dart';
 import 'package:carispot/app/modules/home/views/home_view.dart';
 import 'package:carispot/app/modules/maps/views/maps_view.dart';
@@ -12,16 +13,22 @@ class MainView extends GetView<MainController> {
   const MainView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    MainController mainController = Get.put(MainController());
     return Scaffold(
       backgroundColor: AppConstants.black,
       body: GetBuilder<MainController>(
           init: MainController(),
+          initState: (state) {
+            mainController.getData();
+            mainController.determinePosition();
+            mainController.openBoxFavorite();
+          },
           builder: (c) {
             return Stack(
               children: [
                 IndexedStack(
                   index: c.currentPage,
-                  children: [HomeView(), MapsView(), MapsView()],
+                  children: [HomeView(), MapsView(), FavoriteView()],
                 ),
                 Positioned(
                   bottom: 24,
