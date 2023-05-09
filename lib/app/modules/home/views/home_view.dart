@@ -12,33 +12,46 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GetBuilder<HomeController>(
-          init: HomeController(),
-          initState: (state) {
-            controller.determinePosition();
-          },
-          builder: (c) {
-            return c.userPosition == null
-                ? const SizedBox()
-                : FlutterMap(
-                    options: MapOptions(
-                      center: LatLng(
-                          c.userPosition!.latitude, c.userPosition!.longitude),
-                      zoom: 13,
-                      interactiveFlags:
-                          InteractiveFlag.pinchZoom | InteractiveFlag.drag,
+      backgroundColor: AppConstants.black,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Jakarta',
+                      style: TextStyle(color: Colors.white),
                     ),
-                    children: [
-                      TileLayer(
-                        urlTemplate:
-                            "https://api.mapbox.com/styles/v1/davearr/clcrnx2li000214r0quwyn5jt/tiles/256/{z}/{x}/{y}@2x?access_token={accessToken}",
-                        additionalOptions: {
-                          'accessToken': AppConstants.mapBoxAccessToken,
-                        },
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.white.withOpacity(0.3),
                       ),
-                    ],
-                  );
-          }),
+                      child: Row(
+                        children: [
+                          Icon(Icons.sunny, color: Colors.white),
+                          SizedBox(
+                            width: 8,
+                          ),
+                          Text(
+                            '29°',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
