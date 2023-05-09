@@ -10,6 +10,7 @@ void main() {
       title: "CariSpot",
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
+      theme: ThemeData(fontFamily: 'Poppins'),
     ),
   );
 }
