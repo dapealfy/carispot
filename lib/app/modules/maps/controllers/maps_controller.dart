@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:carispot/app/modules/main/controllers/main_controller.dart';
+import 'package:flutter_map/flutter_map.dart';
 import 'package:get/get.dart';
 
 class MapsController extends GetxController {
+  MapController mapController = MapController();
   List searchResult = [];
 
   void onSearch(String value) {
@@ -16,6 +20,11 @@ class MapsController extends GetxController {
         }
       }
     }
+    update();
+  }
+
+  void resetSearch() {
+    searchResult.clear();
     update();
   }
 }

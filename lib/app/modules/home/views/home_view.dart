@@ -6,6 +6,7 @@ import 'package:carispot/app/utils/maps.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import '../controllers/home_controller.dart';
 
@@ -39,6 +40,7 @@ class HomeView extends GetView<HomeController> {
 }
 
 Widget _appBar() {
+  HomeProvider homeProvider = HomeProvider();
   return GetBuilder<HomeController>(
       init: HomeController(),
       builder: (c) {
@@ -46,7 +48,9 @@ Widget _appBar() {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              c.placemarks == null ? '...' : c.placemarks![0].name!,
+              c.placemarks == null
+                  ? '...'
+                  : c.placemarks![0].subAdministrativeArea!,
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 16,
@@ -60,14 +64,31 @@ Widget _appBar() {
                 color: AppConstants.lime,
               ),
               child: Row(
-                children: const [
+                children: [
                   Icon(Icons.sunny, color: Colors.black),
                   SizedBox(
                     width: 8,
                   ),
-                  Text(
-                    '29°',
-                    style: TextStyle(color: Colors.black),
+                  FutureBuilder<String>(
+                    future: homeProvider.weatherApi(),
+                    builder:
+                        (BuildContext context, AsyncSnapshot<String> snapshot) {
+                      if (snapshot.connectionState == ConnectionState.done) {
+                        if (snapshot.hasError) {
+                          return Text('Error: ${snapshot.error}');
+                        } else {
+                          return Text(
+                            snapshot.data! + '°',
+                            style: TextStyle(color: Colors.black),
+                          );
+                        }
+                      } else {
+                        return Text(
+                          '-°',
+                          style: TextStyle(color: Colors.black),
+                        );
+                      }
+                    },
                   ),
                 ],
               ),
@@ -93,7 +114,7 @@ Widget _upperText() {
         height: 12,
       ),
       Text(
-        'Rabu, 10 Mei',
+        DateFormat.MMMMEEEEd('id').format(DateTime.now()),
         style: TextStyle(color: Colors.white.withOpacity(0.5), fontSize: 20),
       ),
     ],
@@ -101,40 +122,62 @@ Widget _upperText() {
 }
 
 Widget _tabbar() {
-  return Row(
-    children: [
-      Expanded(
-        child: Container(
-          margin: const EdgeInsets.only(right: 8),
-          padding: const EdgeInsets.symmetric(vertical: 12),
-          decoration: BoxDecoration(
-              color: Colors.grey.withOpacity(0.1),
-              borderRadius: BorderRadius.circular(30)),
-          child: const Center(
-            child: Text(
-              'Populer',
-              style: TextStyle(color: Colors.white, fontSize: 18),
+  return GetBuilder<HomeController>(
+      init: HomeController(),
+      builder: (homeController) {
+        return Row(
+          children: [
+            Expanded(
+              child: InkWell(
+                onTap: () => homeController.changeTab(0),
+                child: Container(
+                  margin: const EdgeInsets.only(right: 8),
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  decoration: BoxDecoration(
+                      color: homeController.indexTab == 0
+                          ? AppConstants.lime
+                          : Colors.grey.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(30)),
+                  child: Center(
+                    child: Text(
+                      'Populer',
+                      style: TextStyle(
+                          color: homeController.indexTab == 0
+                              ? Colors.black
+                              : Colors.white,
+                          fontSize: 18),
+                    ),
+                  ),
+                ),
+              ),
             ),
-          ),
-        ),
-      ),
-      Expanded(
-        child: Container(
-          margin: const EdgeInsets.only(left: 8),
-          padding: const EdgeInsets.symmetric(vertical: 12),
-          decoration: BoxDecoration(
-              color: AppConstants.lime,
-              borderRadius: BorderRadius.circular(30)),
-          child: const Center(
-            child: Text(
-              'Terdekat',
-              style: TextStyle(color: Colors.black, fontSize: 18),
+            Expanded(
+              child: InkWell(
+                onTap: () => homeController.changeTab(1),
+                child: Container(
+                  margin: const EdgeInsets.only(left: 8),
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  decoration: BoxDecoration(
+                      color: homeController.indexTab == 1
+                          ? AppConstants.lime
+                          : Colors.grey.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(30)),
+                  child: Center(
+                    child: Text(
+                      'Terdekat',
+                      style: TextStyle(
+                          color: homeController.indexTab == 1
+                              ? Colors.black
+                              : Colors.white,
+                          fontSize: 18),
+                    ),
+                  ),
+                ),
+              ),
             ),
-          ),
-        ),
-      ),
-    ],
-  );
+          ],
+        );
+      });
 }
 
 Widget _carousel() {

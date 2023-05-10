@@ -1,3 +1,4 @@
+import 'package:carispot/app/modules/home/controllers/home_controller.dart';
 import 'package:carispot/app/modules/main/controllers/main_controller.dart';
 import 'package:carispot/app/utils/constants.dart';
 import 'package:carispot/app/utils/location.dart';
@@ -183,6 +184,7 @@ class FavoriteView extends GetView<FavoriteController> {
 }
 
 Widget _appBar() {
+  HomeProvider homeProvider = HomeProvider();
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
@@ -201,14 +203,30 @@ Widget _appBar() {
           color: AppConstants.lime,
         ),
         child: Row(
-          children: const [
+          children: [
             Icon(Icons.sunny, color: Colors.black),
             SizedBox(
               width: 8,
             ),
-            Text(
-              '29°',
-              style: TextStyle(color: Colors.black),
+            FutureBuilder<String>(
+              future: homeProvider.weatherApi(),
+              builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+                if (snapshot.connectionState == ConnectionState.done) {
+                  if (snapshot.hasError) {
+                    return Text('Error: ${snapshot.error}');
+                  } else {
+                    return Text(
+                      snapshot.data! + '°',
+                      style: TextStyle(color: Colors.black),
+                    );
+                  }
+                } else {
+                  return Text(
+                    '-°',
+                    style: TextStyle(color: Colors.black),
+                  );
+                }
+              },
             ),
           ],
         ),

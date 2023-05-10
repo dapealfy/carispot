@@ -52,9 +52,8 @@ class MainController extends GetxController {
 
     userPosition = await Geolocator.getCurrentPosition();
     HomeController homeController = Get.put(HomeController());
-    homeController.getUserAddress(userPosition);
-    allPlace =
-        sortLocationsByDistance(userPosition!, dataPlace!['place']) as List;
+    homeController.getUserAddress(userPosition!);
+    allPlace = sortLocationsByDistance(userPosition!, dataPlace!['place']);
     update();
   }
 

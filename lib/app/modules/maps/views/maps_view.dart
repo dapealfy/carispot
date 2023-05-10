@@ -38,72 +38,79 @@ Widget _maps() {
             ? const SizedBox()
             : c.dataPlace == null
                 ? const SizedBox()
-                : FlutterMap(
-                    options: MapOptions(
-                      center: LatLng(
-                          c.userPosition!.latitude, c.userPosition!.longitude),
-                      zoom: 15,
-                      interactiveFlags:
-                          InteractiveFlag.pinchZoom | InteractiveFlag.drag,
-                    ),
-                    children: [
-                      TileLayer(
-                        urlTemplate:
-                            "https://api.mapbox.com/styles/v1/davearr/clcrnx2li000214r0quwyn5jt/tiles/256/{z}/{x}/{y}@2x?access_token={accessToken}",
-                        additionalOptions: const {
-                          'accessToken': AppConstants.mapBoxAccessToken,
-                        },
-                      ),
-                      MarkerLayer(
-                        markers: [
-                          Marker(
-                              point: LatLng(c.userPosition!.latitude,
-                                  c.userPosition!.longitude),
-                              builder: (context) {
-                                return Container(
-                                  height: 17,
-                                  width: 17,
-                                  decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: Colors.white),
-                                  child: Center(
-                                    child: Container(
-                                      height: 15,
-                                      width: 15,
+                : GetBuilder<MapsController>(
+                    init: MapsController(),
+                    builder: (mapsController) {
+                      return FlutterMap(
+                        mapController: mapsController.mapController,
+                        options: MapOptions(
+                          center: LatLng(c.userPosition!.latitude,
+                              c.userPosition!.longitude),
+                          zoom: 15,
+                          interactiveFlags:
+                              InteractiveFlag.pinchZoom | InteractiveFlag.drag,
+                        ),
+                        children: [
+                          TileLayer(
+                            urlTemplate:
+                                "https://api.mapbox.com/styles/v1/davearr/clcrnx2li000214r0quwyn5jt/tiles/256/{z}/{x}/{y}@2x?access_token={accessToken}",
+                            additionalOptions: const {
+                              'accessToken': AppConstants.mapBoxAccessToken,
+                            },
+                          ),
+                          MarkerLayer(
+                            markers: [
+                              Marker(
+                                  point: LatLng(c.userPosition!.latitude,
+                                      c.userPosition!.longitude),
+                                  builder: (context) {
+                                    return Container(
+                                      height: 17,
+                                      width: 17,
                                       decoration: BoxDecoration(
                                           shape: BoxShape.circle,
-                                          color: Colors.blue),
-                                    ),
-                                  ),
-                                );
-                              })
+                                          color: Colors.white),
+                                      child: Center(
+                                        child: Container(
+                                          height: 15,
+                                          width: 15,
+                                          decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              color: Colors.blue),
+                                        ),
+                                      ),
+                                    );
+                                  })
+                            ],
+                          ),
+                          MarkerLayer(
+                            markers:
+                                (c.dataPlace!['place'] as List).map((data) {
+                              return Marker(
+                                point: LatLng(double.parse(data['latitude']),
+                                    double.parse(data['longitude'])),
+                                width: 74,
+                                height: 74,
+                                builder: (context) => Column(
+                                  children: [
+                                    InkWell(
+                                      onTap: () {
+                                        Get.bottomSheet(_bottomSheet(data));
+                                      },
+                                      child: const Icon(
+                                        Icons.location_pin,
+                                        color: Colors.red,
+                                        size: 36,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              );
+                            }).toList(),
+                          ),
                         ],
-                      ),
-                      MarkerLayer(
-                        markers: (c.dataPlace!['place'] as List).map((data) {
-                          return Marker(
-                            point: LatLng(double.parse(data['latitude']),
-                                double.parse(data['longitude'])),
-                            width: 74,
-                            height: 74,
-                            builder: (context) => Column(
-                              children: [
-                                InkWell(
-                                  onTap: () {
-                                    Get.bottomSheet(_bottomSheet(data));
-                                  },
-                                  child: const Icon(
-                                    Icons.location_pin,
-                                    color: Colors.red,
-                                  ),
-                                )
-                              ],
-                            ),
-                          );
-                        }).toList(),
-                      ),
-                    ],
-                  );
+                      );
+                    });
       });
 }
 
@@ -164,8 +171,16 @@ Widget _searchBar() {
                         itemBuilder: (context, index) {
                           return ListTile(
                             onTap: () {
+                              c.mapController.move(
+                                  LatLng(
+                                      double.parse(
+                                          c.searchResult[index]['latitude']),
+                                      double.parse(
+                                          c.searchResult[index]['longitude'])),
+                                  15);
                               Get.bottomSheet(
                                   _bottomSheet(c.searchResult[index]));
+                              c.resetSearch();
                             },
                             leading: Icon(
                               Icons.location_on_outlined,

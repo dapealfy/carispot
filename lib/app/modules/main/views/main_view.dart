@@ -6,6 +6,7 @@ import 'package:carispot/app/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 import '../controllers/main_controller.dart';
 
@@ -23,6 +24,7 @@ class MainView extends GetView<MainController> {
             mainController.getData();
             mainController.determinePosition();
             mainController.openBoxFavorite();
+            initializeDateFormatting();
           },
           builder: (c) {
             return Stack(
