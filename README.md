@@ -13,17 +13,16 @@ Berikut adalah tampilan Home dari aplikasi cari spot yang berisikan lokasi user 
 
 # Tampilan Maps
 
-<img src="https://github.com/dapealfy/carispot/blob/main/screenshot/maps.png" width="200px">
+<p float="left">
+  <img src="https://github.com/dapealfy/carispot/blob/main/screenshot/maps.png" width="200px">
+  <img src="https://github.com/dapealfy/carispot/blob/main/screenshot/search.png" width="200px">
+  <img src="https://github.com/dapealfy/carispot/blob/main/screenshot/search_on_click.png" width="200px">
+</p>
 Berikut adalah tampilan Maps dari aplikasi cari spot yang berisikan tampilan peta dengan searchbar. Pada halaman ini terdapat beberapa fungsi yang dapat diakses diantaranya:
 
 - Pencarian lokasi Restoran dan Rumah Sakit
 - Petunjuk arah menuju tiitk lokasi (menggunakan library url_launcher)
 - Save lokasi ke favorite (menggunakan hive)
-
-<p float="left">
-  <img src="https://github.com/dapealfy/carispot/blob/main/screenshot/search.png" width="200px">
-  <img src="https://github.com/dapealfy/carispot/blob/main/screenshot/search_on_click.png" width="200px">
-</p>
 
 # Tampilan Favorite
 
