@@ -20,8 +20,10 @@ Berikut adalah tampilan Maps dari aplikasi cari spot yang berisikan tampilan pet
 - Petunjuk arah menuju tiitk lokasi (menggunakan library url_launcher)
 - Save lokasi ke favorite (menggunakan hive)
 
-<img src="https://github.com/dapealfy/carispot/blob/main/screenshot/search.png" width="200px">
-<img src="https://github.com/dapealfy/carispot/blob/main/screenshot/search_on_click.png" width="200px">
+<p float="left">
+  <img src="https://github.com/dapealfy/carispot/blob/main/screenshot/search.png" width="200px">
+  <img src="https://github.com/dapealfy/carispot/blob/main/screenshot/search_on_click.png" width="200px">
+</p>
 
 # Tampilan Favorite
 
