@@ -4,12 +4,12 @@ Aplikasi pencari Rumah Sakit dan Restoran sekitar Jawa - Sumatera
 
 ## Deskripsi
 
-CariSpot menggunakan library [flutter_map](https://pub.dev/packages/flutter_map) untuk menampilkan tampilan Maps. CariSpot juga menggunakan data restoran dan rumah sakit yang didapat dari: [https://github.com/anak10thn/dishub-webgis-data/tree/master](https://github.com/anak10thn/dishub-webgis-data/tree/master)
+CariSpot menggunakan library [flutter_map](https://pub.dev/packages/flutter_map) untuk menampilkan tampilan Maps. CariSpot juga menggunakan data restoran dan rumah sakit yang didapat dari: https://github.com/anak10thn/dishub-webgis-data/tree/master
 
 # Tampilan Home
 
 <img src="https://github.com/dapealfy/carispot/blob/main/screenshot/home.png" width="200px">
-Berikut adalah tampilan Home dari aplikasi cari spot yang berisikan lokasi user (kota), dan prakiraan cuaca yang didapatkan dari [ApiWeather](https://open-meteo.com). Terdapat juga Tab Populer dan Terdekat, namun untuk saat ini pengerjaan hanya sampai di tab Terdekat.
+Berikut adalah tampilan Home dari aplikasi cari spot yang berisikan lokasi user (kota), dan prakiraan cuaca yang didapatkan dari https://open-meteo.com. Terdapat juga Tab Populer dan Terdekat, namun untuk saat ini pengerjaan hanya sampai di tab Terdekat.
 
 # Tampilan Maps
 
