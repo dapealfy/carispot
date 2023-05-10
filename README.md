@@ -1,16 +1,29 @@
-# carispot
+# CariSpot
 
-A new Flutter project.
+Aplikasi pencari Rumah Sakit dan Restoran sekitar Jawa - Sumatera
 
-## Getting Started
+## Deskripsi
 
-This project is a starting point for a Flutter application.
+CariSpot menggunakan library flutter_map untuk menampilkan tampilan Maps. CariSpot juga menggunakan data restoran dan rumah sakit yang didapat dari: [https://github.com/anak10thn/dishub-webgis-data/tree/master](https://github.com/anak10thn/dishub-webgis-data/tree/master)
 
-A few resources to get you started if this is your first Flutter project:
+# Tampilan Home
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+![Home](https://github.com/dapealfy/carispot/main/screenshot/home.png)
+Berikut adalah tampilan Home dari aplikasi cari spot yang berisikan lokasi user (kota), dan prakiraan cuaca yang didapatkan dari api Weather. Terdapat juga Tab Populer dan Terdekat, namun untuk saat ini pengerjaan hanya sampai di tab Terdekat.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# Tampilan Maps
+
+![Maps](https://github.com/dapealfy/carispot/main/screenshot/maps.png)
+Berikut adalah tampilan Maps dari aplikasi cari spot yang berisikan tampilan peta dengan searchbar. Pada halaman ini terdapat beberapa fungsi yang dapat diakses diantaranya:
+
+- Pencarian lokasi Restoran dan Rumah Sakit
+- Petunjuk arah menuju tiitk lokasi (menggunakan library url_launcher)
+- Save lokasi ke favorite (menggunakan hive)
+
+![Search](https://github.com/dapealfy/carispot/main/screenshot/search.png)
+![Search](https://github.com/dapealfy/carispot/main/screenshot/search_on_click.png)
+
+# Tampilan Favorite
+
+![Home](https://github.com/dapealfy/carispot/main/screenshot/favorite.png)
+Berikut adalah tampilan dari halaman Favorite, dimana terdapat 2 buah fitur yang dapat diakses yaitu Petunjuk arah dan hapus dari favorite.
