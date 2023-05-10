@@ -8,22 +8,22 @@ CariSpot menggunakan library flutter_map untuk menampilkan tampilan Maps. CariSp
 
 # Tampilan Home
 
-![Home](https://github.com/dapealfy/carispot/main/screenshot/home.png)
+![Home](https://github.com/dapealfy/carispot/blob/main/screenshot/home.png)
 Berikut adalah tampilan Home dari aplikasi cari spot yang berisikan lokasi user (kota), dan prakiraan cuaca yang didapatkan dari api Weather. Terdapat juga Tab Populer dan Terdekat, namun untuk saat ini pengerjaan hanya sampai di tab Terdekat.
 
 # Tampilan Maps
 
-![Maps](https://github.com/dapealfy/carispot/main/screenshot/maps.png)
+![Maps](https://github.com/dapealfy/carispot/blob/main/screenshot/maps.png)
 Berikut adalah tampilan Maps dari aplikasi cari spot yang berisikan tampilan peta dengan searchbar. Pada halaman ini terdapat beberapa fungsi yang dapat diakses diantaranya:
 
 - Pencarian lokasi Restoran dan Rumah Sakit
 - Petunjuk arah menuju tiitk lokasi (menggunakan library url_launcher)
 - Save lokasi ke favorite (menggunakan hive)
 
-![Search](https://github.com/dapealfy/carispot/main/screenshot/search.png)
-![Search](https://github.com/dapealfy/carispot/main/screenshot/search_on_click.png)
+![Search](https://github.com/dapealfy/carispot/blob/main/screenshot/search.png)
+![Search](https://github.com/dapealfy/carispot/blob/main/screenshot/search_on_click.png)
 
 # Tampilan Favorite
 
-![Home](https://github.com/dapealfy/carispot/main/screenshot/favorite.png)
+![Home](https://github.com/dapealfy/carispot/blob/main/screenshot/favorite.png)
 Berikut adalah tampilan dari halaman Favorite, dimana terdapat 2 buah fitur yang dapat diakses yaitu Petunjuk arah dan hapus dari favorite.
